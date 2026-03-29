@@ -9,6 +9,8 @@ description: 帮助用户基于 TML-Docs-Spec 规范，将非结构化的需求�
 
 > **重要前提**：这些模板的最终消费者是 AI Agent。模板不只是给人读的格式文档，更是给机器执行的「系统指令」。每一个章节的 `description` 和 `example` 字段，都是在直接指导 Agent 应该输出什么。
 
+> **参考文档**：在创建模板时，必须严格遵循 `YAML_FRONTMATTER_SPEC.md` 中定义的 YAML Frontmatter 规范。该文档详细说明了每个字段的名称、描述、使用规则和处理方式。
+
 ---
 
 ## 核心工作流
