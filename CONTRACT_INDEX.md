@@ -21,3 +21,4 @@ maintainer_note: |
 | `Insight_Report_Spec` | `contract/新事物洞悉报告模板.md` | 文档模板 | 对新技术或行业动态的深度洞察报告，运用第一性原理和费曼技巧，提取对团队的落地价值。 |
 | `SQL_DDL_Generation_Spec` | `contract/数据库DDL规范指令.md` | 系统指令 | 约束 Agent 生成数据库表结构，输出纯 `.sql` 文件而非 Markdown。 |
 | `OpenAPI_Generation_Spec` | `contract/OpenAPI规范指令.md` | 系统指令 | 约束 Agent 生成符合 OpenAPI 3.0.3 规范的接口描述，输出纯 `.yaml` 文件。 |
+| `Task_Assignment_Spec` | `contract/任务书文档模板.md` | 文档模板 | 旨在平滑移交任务，消除信息差，明确任务背景、资料库、执行细节及验收标准。 |
