@@ -1,5 +1,5 @@
 {
-  "name": "tmlspec-cli",
+  "name": "@tml/tmlspec-cli",
   "version": "0.1.0",
   "description": "Inject project and requirement command files for team workflows.",
   "type": "module",
@@ -26,6 +26,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=18.18"
+  },
+  "publishConfig": {
+    "registry": "https://gaq0noe1.cn-nb1.rainapp.top/"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.8.4",

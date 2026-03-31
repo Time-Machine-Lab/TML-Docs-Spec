@@ -19,14 +19,22 @@ node ./bin/tml-spec.js init
 发布后可从指定 Verdaccio 源全局安装：
 
 ```bash
-npm install -g tmlspec-cli --registry https://gaq0noe1.cn-nb1.rainapp.top/
+npm config set @tml:registry https://gaq0noe1.cn-nb1.rainapp.top/
+npm install -g @tml/tmlspec-cli
 tml-spec init
 ```
 
-如果希望后续安装默认走该源，也可以先执行：
+建议保留默认公共源，让第三方依赖继续从 npm 官方源下载：
 
 ```bash
-npm config set registry https://gaq0noe1.cn-nb1.rainapp.top/
+npm config set registry https://registry.npmjs.org/
+```
+
+如果希望直接写入 .npmrc，也可以使用：
+
+```ini
+registry=https://registry.npmjs.org/
+@tml:registry=https://gaq0noe1.cn-nb1.rainapp.top/
 ```
 
 ## 生成结果
