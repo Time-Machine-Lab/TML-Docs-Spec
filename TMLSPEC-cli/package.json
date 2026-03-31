@@ -1,0 +1,39 @@
+{
+  "name": "tmlspec-cli",
+  "version": "0.1.0",
+  "description": "Inject project and requirement command files for team workflows.",
+  "type": "module",
+  "bin": {
+    "tml-spec": "./bin/tml-spec.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src/core/commands",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli/index.ts",
+    "start": "node ./bin/tml-spec.js"
+  },
+  "keywords": [
+    "cli",
+    "spec",
+    "project-commands",
+    "team-workflow"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.8.4",
+    "commander": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  }
+}

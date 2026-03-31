@@ -1,0 +1,78 @@
+name: Publish TMLSPEC CLI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: TMLSPEC-cli
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
+          cache-dependency-path: TMLSPEC-cli/package-lock.json
+
+      - name: Validate publish secrets
+        shell: bash
+        run: |
+          if [ -z "${{ secrets.NPM_REGISTRY_URL }}" ]; then
+            echo "Missing required secret: NPM_REGISTRY_URL" >&2
+            exit 1
+          fi
+
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "Missing required secret: NPM_TOKEN" >&2
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Set package version from tag
+        shell: bash
+        run: |
+          RAW_TAG="${GITHUB_REF_NAME}"
+          VERSION="${RAW_TAG#v}"
+
+          if [ -z "$VERSION" ] || [ "$VERSION" = "$RAW_TAG" ]; then
+            echo "Unable to derive package version from tag: $RAW_TAG" >&2
+            exit 1
+          fi
+
+          npm pkg set version="$VERSION"
+
+      - name: Configure self-hosted npm registry
+        shell: bash
+        run: |
+          REGISTRY_URL="${{ secrets.NPM_REGISTRY_URL }}"
+          REGISTRY_HOST="${REGISTRY_URL#https://}"
+          REGISTRY_HOST="${REGISTRY_HOST#http://}"
+          REGISTRY_HOST="${REGISTRY_HOST%/}"
+
+          cat <<EOF > ~/.npmrc
+          registry=${REGISTRY_URL}
+          //${REGISTRY_HOST}/:_authToken=${{ secrets.NPM_TOKEN }}
+          always-auth=true
+          EOF
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
