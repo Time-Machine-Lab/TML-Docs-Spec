@@ -1,6 +1,6 @@
 {
   "name": "@tml/tmlspec-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Inject project and requirement command files for team workflows.",
   "type": "module",
   "bin": {
