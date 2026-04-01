@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 import { downloadSkill } from '../../utils/fs.js';
@@ -14,20 +14,16 @@ export const traeAdapter: ToolAdapter = {
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('.trae/commands/', 'project.md'),
-        content: buildProjectMarkdownCommand()
-      },
-      {
-        relativePath: buildNamespacedCommandPath('.trae/commands/', 'requirement.md'),
-        content: buildRequirementMarkdownCommand()
-      },
-      {
         relativePath: buildNamespacedCommandPath('.trae/commands/', 'doctor.md'),
         content: buildDoctorMarkdownCommand()
       },
       {
         relativePath: buildNamespacedCommandPath('.trae/commands/', 'update.md'),
         content: buildUpdateMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.trae/commands/', 'ai-spec.md'),
+        content: buildAiSpecMarkdownCommand()
       }
     ];
   },

@@ -9,20 +9,16 @@ function readCommandMarkdown(fileName: string): string {
   return readFileSync(path.join(packageRoot, 'src', 'core', 'commands', fileName), 'utf8').trimEnd();
 }
 
-export function buildProjectMarkdownCommand(): string {
-  return readCommandMarkdown('project.md');
-}
-
-export function buildRequirementMarkdownCommand(): string {
-  return readCommandMarkdown('requirement.md');
-}
-
 export function buildDoctorMarkdownCommand(): string {
   return readCommandMarkdown('doctor.md');
 }
 
 export function buildUpdateMarkdownCommand(): string {
   return readCommandMarkdown('update.md');
+}
+
+export function buildAiSpecMarkdownCommand(): string {
+  return readCommandMarkdown('ai-spec.md');
 }
 
 export function buildGeminiTomlCommand(name: string, description: string, prompt: string): string {

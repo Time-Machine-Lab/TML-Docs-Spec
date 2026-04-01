@@ -1,4 +1,4 @@
-import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
@@ -12,20 +12,16 @@ export const codexAdapter: ToolAdapter = {
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'project.md'),
-        content: buildProjectMarkdownCommand()
-      },
-      {
-        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'requirement.md'),
-        content: buildRequirementMarkdownCommand()
-      },
-      {
         relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'doctor.md'),
         content: buildDoctorMarkdownCommand()
       },
       {
         relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'update.md'),
         content: buildUpdateMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'ai-spec.md'),
+        content: buildAiSpecMarkdownCommand()
       }
     ];
   }

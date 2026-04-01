@@ -1,3 +1,10 @@
+---
+name: /tml-update
+id: tml-update
+category: Diagnostic
+description: 更新检测命令，检查 tml-spec 相关的 CLI 及配置是否为最新版本。
+---
+
 # 更新检测命令 (TML Update)
 
 你是版本更新助手。

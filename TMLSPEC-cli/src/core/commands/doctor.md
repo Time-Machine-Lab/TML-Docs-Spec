@@ -1,3 +1,10 @@
+---
+name: /tml-doctor
+id: tml-doctor
+category: Diagnostic
+description: 环境检查命令，检测当前项目的 tml-spec 配置和依赖状态。
+---
+
 # 环境检查命令 (TML Doctor)
 
 你是开发环境检测助手。
