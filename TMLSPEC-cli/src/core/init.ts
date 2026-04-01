@@ -32,6 +32,12 @@ function parseMultiValue<T extends string>(value: string | undefined): T[] | und
     .filter(Boolean) as T[];
 }
 
+function resolveGeneratedFilePath(projectRoot: string, relativePath: string): string {
+  return path.isAbsolute(relativePath)
+    ? relativePath
+    : path.join(projectRoot, relativePath);
+}
+
 async function collectAnswers(overrides: InitOverrides): Promise<InitAnswers> {
   assertValidSelections(overrides);
 
@@ -75,7 +81,9 @@ export async function runInit(overrides: InitOverrides = {}): Promise<void> {
     const files = adapter.generateFiles();
 
     for (const file of files) {
-      if (await writeTextFile(path.join(answers.projectRoot, file.relativePath), file.content, answers.force)) {
+      const targetPath = resolveGeneratedFilePath(answers.projectRoot, file.relativePath);
+
+      if (await writeTextFile(targetPath, file.content, answers.force)) {
         writtenFiles += 1;
       } else {
         skippedFiles += 1;

@@ -111,8 +111,8 @@ registry=https://registry.npmjs.org/
 
 - `.claude/commands/tml-spec/project.md`
 - `.claude/commands/tml-spec/requirement.md`
-- `.codex/prompts/tml-spec/project.md`
-- `.codex/prompts/tml-spec/requirement.md`
+- `~/.codex/prompts/tml-spec/project.md`
+- `~/.codex/prompts/tml-spec/requirement.md`
 - `.github/prompts/tml-spec/project.prompt.md`
 - `.github/prompts/tml-spec/requirement.prompt.md`
 - `.trae/commands/tml-spec/project.md`

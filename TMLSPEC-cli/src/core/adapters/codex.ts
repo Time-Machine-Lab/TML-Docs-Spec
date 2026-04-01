@@ -1,22 +1,26 @@
+import { homedir } from 'node:os';
+import path from 'node:path';
 import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
-import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
+import { COMMAND_NAMESPACE } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
+
+const CODEX_PROMPTS_DIRECTORY = path.join(homedir(), '.codex', 'prompts', COMMAND_NAMESPACE);
 
 export const codexAdapter: ToolAdapter = {
   tool: {
     id: 'codex',
     label: 'Codex',
-    directory: `.codex/prompts/${COMMAND_NAMESPACE}/`,
+    directory: `~/.codex/prompts/`,
     fileType: 'Markdown'
   },
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('.codex/prompts/', 'project.md'),
+        relativePath: path.join(CODEX_PROMPTS_DIRECTORY, `${COMMAND_NAMESPACE}-project.md`),
         content: buildProjectMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.codex/prompts/', 'requirement.md'),
+        relativePath: path.join(CODEX_PROMPTS_DIRECTORY, `${COMMAND_NAMESPACE}-requirement.md`),
         content: buildRequirementMarkdownCommand()
       }
     ];
