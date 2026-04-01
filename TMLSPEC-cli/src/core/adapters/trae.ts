@@ -1,21 +1,22 @@
 import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
+import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
 export const traeAdapter: ToolAdapter = {
   tool: {
     id: 'trae',
     label: 'Trae',
-    directory: '.trae/commands/',
+    directory: `.trae/commands/${COMMAND_NAMESPACE}/`,
     fileType: 'Markdown'
   },
   generateFiles() {
     return [
       {
-        relativePath: '.trae/commands/project.md',
+        relativePath: buildNamespacedCommandPath('.trae/commands/', 'project.md'),
         content: buildProjectMarkdownCommand()
       },
       {
-        relativePath: '.trae/commands/requirement.md',
+        relativePath: buildNamespacedCommandPath('.trae/commands/', 'requirement.md'),
         content: buildRequirementMarkdownCommand()
       }
     ];

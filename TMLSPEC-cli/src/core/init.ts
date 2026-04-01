@@ -91,8 +91,8 @@ export async function runInit(overrides: InitOverrides = {}): Promise<void> {
   console.log(`跳过文件数: ${skippedFiles}`);
   console.log('下一步:');
   console.log('1. 在你的 IDE 中打开生成的命令或 prompt 文件。');
-  console.log('2. 使用 /project 处理项目级文档工作。');
-  console.log('3. 使用 /requirement 处理需求级工作，并路由到 openspec。');
+  console.log('2. 使用 tml-spec 命名空间下的 project 命令处理项目级文档工作。');
+  console.log('3. 使用 tml-spec 命名空间下的 requirement 命令处理需求级工作，并路由到 openspec。');
 }
 
 export function parseInitOverrides(options: {

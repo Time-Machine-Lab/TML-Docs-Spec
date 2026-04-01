@@ -1,21 +1,22 @@
 import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
+import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
 export const opencodeAdapter: ToolAdapter = {
   tool: {
     id: 'opencode',
     label: 'OpenCode',
-    directory: '.opencode/commands/',
+    directory: `.opencode/commands/${COMMAND_NAMESPACE}/`,
     fileType: 'Markdown'
   },
   generateFiles() {
     return [
       {
-        relativePath: '.opencode/commands/project.md',
+        relativePath: buildNamespacedCommandPath('.opencode/commands/', 'project.md'),
         content: buildProjectMarkdownCommand()
       },
       {
-        relativePath: '.opencode/commands/requirement.md',
+        relativePath: buildNamespacedCommandPath('.opencode/commands/', 'requirement.md'),
         content: buildRequirementMarkdownCommand()
       }
     ];

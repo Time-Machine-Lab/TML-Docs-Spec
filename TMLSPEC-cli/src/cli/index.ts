@@ -1,13 +1,20 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
 import { TOOL_OPTIONS } from '../core/catalog.js';
 import { parseInitOverrides, runInit } from '../core/init.js';
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url));
+const packageJsonPath = path.resolve(currentDir, '../../package.json');
+const { version } = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as { version: string };
 
 const program = new Command();
 
 program
   .name('tml-spec')
   .description('Initialize team spec workflows and tool-specific commands.')
-  .version('0.1.0');
+  .version(version);
 
 program
   .command('init')
