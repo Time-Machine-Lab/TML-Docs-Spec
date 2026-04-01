@@ -6,17 +6,17 @@ export const githubCopilotAdapter: ToolAdapter = {
   tool: {
     id: 'github-copilot',
     label: 'GitHub Copilot',
-    directory: `.github/prompts/${COMMAND_NAMESPACE}/`,
+    directory: `.github/prompts/`,
     fileType: 'Prompt Markdown'
   },
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('.github/prompts/', 'project.prompt.md'),
+        relativePath: buildNamespacedCommandPath('.github/prompts/', `${COMMAND_NAMESPACE}-project.prompt.md`),
         content: buildProjectMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.github/prompts/', 'requirement.prompt.md'),
+        relativePath: buildNamespacedCommandPath('.github/prompts/', `${COMMAND_NAMESPACE}-requirement.prompt.md`),
         content: buildRequirementMarkdownCommand()
       }
     ];
