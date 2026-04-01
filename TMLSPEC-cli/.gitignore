@@ -1,4 +1,5 @@
 node_modules/
+contract/
 dist/
 *.log
 npm-debug.log*

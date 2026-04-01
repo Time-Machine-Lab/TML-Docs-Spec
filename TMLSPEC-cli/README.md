@@ -7,6 +7,7 @@ TMLSPEC CLI 是一个轻量初始化工具，用于向当前工作区注入项�
 - 安装 `tml-spec` 命令
 - 执行 `tml-spec init` 选择目标工具
 - 向对应工具目录下的 `tml-spec/` 子目录注入 `project` 与 `requirement` 两个命令文件
+- 将打包内置的 `contract/` 模板目录复制到目标项目根目录
 
 ## 快速开始
 
@@ -46,7 +47,8 @@ tml-spec init
 - 决定是否覆盖已有文件。
 
 7. 初始化完成后，到对应工具目录下的 `tml-spec/` 子目录使用生成的 `project` 和 `requirement` 命令文件。
-8. 在模型会话输入框中输入/tml-spec xxx调用对应的命令
+8. 在目标项目根目录查看自动复制的 `contract/` 模板目录。
+9. 在模型会话输入框中输入/tml-spec xxx调用对应的命令
 
 ### 方式二：在仓库中本地开发和调试
 
@@ -109,6 +111,7 @@ registry=https://registry.npmjs.org/
 
 ## 生成结果
 
+- `contract/`（复制到目标项目根目录）
 - `.claude/commands/tml-spec/project.md`
 - `.claude/commands/tml-spec/requirement.md`
 - `~/.codex/prompts/tml-spec-project.md`
