@@ -19,7 +19,7 @@ node ./bin/tml-spec.js init
 发布后可从指定 Verdaccio 源全局安装：
 
 ```bash
-npm config set @tml:registry https://mxeutgbf.cn-hk1.rainapp.top/
+npm config set "@tml:registry=https://mxeutgbf.cn-hk1.rainapp.top/"
 npm install -g @tml/tmlspec-cli
 tml-spec init
 ```
