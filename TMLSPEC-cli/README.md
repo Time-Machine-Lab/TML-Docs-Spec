@@ -13,6 +13,10 @@ TMLSPEC CLI 是一个轻量初始化工具，用于向当前工作区注入项�
 
 推荐按下面步骤使用。
 
+### 前置要求
+
+在使用 `tml-spec` 生成项目级文档前，请先在你的 AI/IDE 环境中安装 TML-Skills 中的 `tml-docs-spec-generate` skill，确保生成的 `project` 命令可以正确路由到对应文档生成能力。
+
 ### 方式一：在目标项目中直接使用
 
 1. 确认本机 Node.js 版本不低于 18.18。
