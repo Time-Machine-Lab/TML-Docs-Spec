@@ -1,6 +1,6 @@
 {
   "name": "@tml/tmlspec-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Inject project and requirement command files for team workflows.",
   "type": "module",
   "bin": {
@@ -28,7 +28,7 @@
     "node": ">=18.18"
   },
   "publishConfig": {
-    "registry": "https://gaq0noe1.cn-nb1.rainapp.top/"
+    "registry": "https://mxeutgbf.cn-hk1.rainapp.top/"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.8.4",
