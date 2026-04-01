@@ -4,7 +4,7 @@ import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '..
 import { COMMAND_NAMESPACE } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
-const CODEX_PROMPTS_DIRECTORY = path.join(homedir(), '.codex', 'prompts', COMMAND_NAMESPACE);
+const CODEX_PROMPTS_DIRECTORY = path.join(homedir(), '.codex', 'prompts');
 
 export const codexAdapter: ToolAdapter = {
   tool: {
