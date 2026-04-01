@@ -22,3 +22,4 @@ maintainer_note: |
 | `SQL_DDL_Generation_Spec` | `contract/数据库DDL规范指令.md` | 系统指令 | 约束 Agent 生成数据库表结构，输出纯 `.sql` 文件而非 Markdown。 |
 | `OpenAPI_Generation_Spec` | `contract/OpenAPI规范指令.md` | 系统指令 | 约束 Agent 生成符合 OpenAPI 3.0.3 规范的接口描述，输出纯 `.yaml` 文件。 |
 | `Task_Assignment_Spec` | `contract/任务书文档模板.md` | 文档模板 | 旨在平滑移交任务，消除信息差，明确任务背景、资料库、执行细节及验收标准。 |
+| `Phase_Gate_Process_Spec` | `contract/流程规范文档模板.md` | 文档模板 | 运用阶段关卡模型定义团队业务流转的生命周期，明确各阶段的触发时机、关键动作与流转关卡，避免写成操作教程。 |
