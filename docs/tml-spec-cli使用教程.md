@@ -55,7 +55,7 @@ npm install -g @tml/tmlspec-cli
 tml-spec --version
 ```
 
-**预期结果**：终端输出当前版本号（如 `0.4.0`）
+**预期结果**：终端输出当前版本号（如 `0.5.0`）
 
 ---
 
