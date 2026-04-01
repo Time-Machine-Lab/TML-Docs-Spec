@@ -8,16 +8,13 @@
   },
   "files": [
     "bin",
-    "contract",
     "dist",
     "src/core/commands",
     "README.md"
   ],
   "scripts": {
-    "prebuild": "node ./scripts/sync-contract.mjs",
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/cli/index.ts",
-    "prepack": "node ./scripts/sync-contract.mjs",
     "start": "node ./bin/tml-spec.js"
   },
   "keywords": [
@@ -35,9 +32,11 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^7.8.4",
-    "commander": "^13.1.0"
+    "commander": "^13.1.0",
+    "degit": "^2.8.4"
   },
   "devDependencies": {
+    "@types/degit": "^2.8.6",
     "@types/node": "^24.0.0",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"

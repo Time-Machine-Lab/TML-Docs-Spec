@@ -21,4 +21,5 @@ export interface GeneratedCommandFile {
 export interface ToolAdapter {
   tool: ToolOption;
   generateFiles(): GeneratedCommandFile[];
+  postInit?(projectRoot: string): Promise<void>;
 }
