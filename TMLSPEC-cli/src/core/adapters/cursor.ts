@@ -1,12 +1,12 @@
-import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
-import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
+import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand } from '../command-files.js';
+import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
 export const cursorAdapter: ToolAdapter = {
   tool: {
     id: 'cursor',
     label: 'Cursor',
-    directory: `.cursor/commands/${COMMAND_NAMESPACE}/`,
+    directory: `.cursor/commands/`,
     fileType: 'Markdown'
   },
   generateFiles() {
@@ -18,6 +18,14 @@ export const cursorAdapter: ToolAdapter = {
       {
         relativePath: buildNamespacedCommandPath('.cursor/commands/', 'requirement.md'),
         content: buildRequirementMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.cursor/commands/', 'doctor.md'),
+        content: buildDoctorMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.cursor/commands/', 'update.md'),
+        content: buildUpdateMarkdownCommand()
       }
     ];
   }

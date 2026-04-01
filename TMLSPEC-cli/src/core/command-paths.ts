@@ -1,5 +1,5 @@
-export const COMMAND_NAMESPACE = 'tml-spec';
+export const COMMAND_PREFIX = 'tml-';
 
 export function buildNamespacedCommandPath(baseDirectory: string, fileName: string): string {
-  return `${baseDirectory}${COMMAND_NAMESPACE}/${fileName}`;
+  return `${baseDirectory}${COMMAND_PREFIX}${fileName}`;
 }

@@ -1,5 +1,5 @@
-import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
-import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
+import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand } from '../command-files.js';
+import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
 export const githubCopilotAdapter: ToolAdapter = {
@@ -12,12 +12,20 @@ export const githubCopilotAdapter: ToolAdapter = {
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('.github/prompts/', `${COMMAND_NAMESPACE}-project.prompt.md`),
+        relativePath: buildNamespacedCommandPath('.github/prompts/', 'project.prompt.md'),
         content: buildProjectMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.github/prompts/', `${COMMAND_NAMESPACE}-requirement.prompt.md`),
+        relativePath: buildNamespacedCommandPath('.github/prompts/', 'requirement.prompt.md'),
         content: buildRequirementMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.github/prompts/', 'doctor.prompt.md'),
+        content: buildDoctorMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.github/prompts/', 'update.prompt.md'),
+        content: buildUpdateMarkdownCommand()
       }
     ];
   }

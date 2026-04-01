@@ -17,6 +17,14 @@ export function buildRequirementMarkdownCommand(): string {
   return readCommandMarkdown('requirement.md');
 }
 
+export function buildDoctorMarkdownCommand(): string {
+  return readCommandMarkdown('doctor.md');
+}
+
+export function buildUpdateMarkdownCommand(): string {
+  return readCommandMarkdown('update.md');
+}
+
 export function buildGeminiTomlCommand(name: string, description: string, prompt: string): string {
   const escapedPrompt = prompt
     .replace(/\\/g, '\\\\')

@@ -10,6 +10,7 @@ export interface ToolOption {
 export interface InitAnswers {
   projectRoot: string;
   tools: ToolId[];
+  codingMode: 'vibe' | 'openspec';
   force: boolean;
 }
 

@@ -1,12 +1,12 @@
-import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand } from '../command-files.js';
-import { buildNamespacedCommandPath, COMMAND_NAMESPACE } from '../command-paths.js';
+import { buildProjectMarkdownCommand, buildRequirementMarkdownCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand } from '../command-files.js';
+import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
 export const claudeAdapter: ToolAdapter = {
   tool: {
     id: 'claude',
     label: 'Claude Code',
-    directory: `.claude/commands/${COMMAND_NAMESPACE}/`,
+    directory: `.claude/commands/`,
     fileType: 'Markdown'
   },
   generateFiles() {
@@ -18,6 +18,14 @@ export const claudeAdapter: ToolAdapter = {
       {
         relativePath: buildNamespacedCommandPath('.claude/commands/', 'requirement.md'),
         content: buildRequirementMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.claude/commands/', 'doctor.md'),
+        content: buildDoctorMarkdownCommand()
+      },
+      {
+        relativePath: buildNamespacedCommandPath('.claude/commands/', 'update.md'),
+        content: buildUpdateMarkdownCommand()
       }
     ];
   }

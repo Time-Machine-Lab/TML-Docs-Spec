@@ -1,11 +1,12 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkbox, confirm, input } from '@inquirer/prompts';
+import { checkbox, confirm, input, select } from '@inquirer/prompts';
 import { getAdapter } from './adapters/index.js';
 import { TOOL_OPTIONS } from './catalog.js';
 import type { InitAnswers, ToolId } from './types.js';
 import { scaffoldDirectories, writeTextFile } from '../utils/fs.js';
 import { checkCommandExists, runCommand } from '../utils/exec.js';
+import { playIntroAnimation } from '../utils/animation.js';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(currentDir, '../..');
@@ -63,6 +64,20 @@ async function collectAnswers(overrides: InitOverrides): Promise<InitAnswers> {
         }))
       });
 
+  const codingMode = await select<'vibe' | 'openspec'>({
+    message: 'Select AI Coding Mode',
+    choices: [
+      {
+        name: 'Vibe Coding (Lightweight, no OpenSpec installation)',
+        value: 'vibe'
+      },
+      {
+        name: 'OpenSpec (Structured workflow, installs OpenSpec)',
+        value: 'openspec'
+      }
+    ]
+  });
+
   const force = overrides.force
     ?? await confirm({
       message: 'Overwrite files if they already exist?',
@@ -72,22 +87,29 @@ async function collectAnswers(overrides: InitOverrides): Promise<InitAnswers> {
   return {
     projectRoot: path.resolve(projectRoot),
     tools,
+    codingMode,
     force
   };
 }
 
 export async function runInit(overrides: InitOverrides = {}): Promise<void> {
+  if (!overrides.tools || !overrides.projectRoot) {
+    await playIntroAnimation();
+  }
+
   const answers = await collectAnswers(overrides);
 
-  console.log('检查 OpenSpec 依赖...');
-  const hasOpenSpec = await checkCommandExists('openspec');
-  if (!hasOpenSpec) {
-    console.log('未检测到 OpenSpec，正在全局安装 @fission-ai/openspec@latest...');
-    try {
-      await runCommand('npm install -g @fission-ai/openspec@latest');
-      console.log('OpenSpec 安装完成。');
-    } catch (error) {
-      console.error('OpenSpec 安装失败，请稍后手动安装。');
+  if (answers.codingMode === 'openspec') {
+    console.log('检查 OpenSpec 依赖...');
+    const hasOpenSpec = await checkCommandExists('openspec');
+    if (!hasOpenSpec) {
+      console.log('未检测到 OpenSpec，正在全局安装 @fission-ai/openspec@latest...');
+      try {
+        await runCommand('npm install -g @fission-ai/openspec@latest');
+        console.log('OpenSpec 安装完成。');
+      } catch (error) {
+        console.error('OpenSpec 安装失败，请稍后手动安装。');
+      }
     }
   }
 
@@ -113,31 +135,24 @@ export async function runInit(overrides: InitOverrides = {}): Promise<void> {
     }
   }
 
-  try {
-    console.log('执行 OpenSpec 初始化...');
-    await runCommand(`openspec init --tools ${answers.tools.join(',')} "${answers.projectRoot}" --force`);
-    console.log('OpenSpec 初始化完成。');
-  } catch (error) {
-    console.error('OpenSpec 初始化时发生错误。');
+  if (answers.codingMode === 'openspec') {
+    try {
+      console.log('执行 OpenSpec 初始化...');
+      await runCommand(`openspec init --tools ${answers.tools.join(',')} "${answers.projectRoot}" --force`);
+      console.log('OpenSpec 初始化完成。');
+    } catch (error) {
+      console.error('OpenSpec 初始化时发生错误。');
+    }
   }
 
   await scaffoldDirectories(answers.projectRoot, [
     'docs/api',
     'docs/sql',
-    'docs/project',
-    'docs/project/domain'
+    'docs/design',
+    'docs/spec'
   ]);
 
-  const relativeRoot = path.relative(process.cwd(), answers.projectRoot) || '.';
-  console.log('TML Spec 命令已初始化。');
-  console.log(`项目根目录: ${relativeRoot}`);
-  console.log(`已选择工具: ${answers.tools.join(', ')}`);
-  console.log(`写入文件数: ${writtenFiles}`);
-  console.log(`跳过文件数: ${skippedFiles}`);
-  console.log('下一步:');
-  console.log('1. 在你的 IDE 中打开生成的命令或 prompt 文件。');
-  console.log('2. 使用 tml-spec 命名空间下的 project 命令处理项目级文档工作。');
-  console.log('3. 使用 tml-spec 命名空间下的 requirement 命令处理需求级工作，并路由到 openspec。');
+  console.log('\n✨ TML Workspace Setup Complete! 🎉\n');
 }
 
 export function parseInitOverrides(options: {
