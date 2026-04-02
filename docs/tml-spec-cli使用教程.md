@@ -11,21 +11,22 @@
 - 一组 **AI 命令（AI Commands）**，可直接在你的 AI IDE 中调用
 - 自动化的 **第三方工作流（Openspec）集成**，规范需求→提案→开发→归档的全生命周期
 
-**预期效果**：在你的项目中执行 `tml-spec init` 后，目录结构如下：
+**预期效果**：在你的项目中执行 `tml-spec init` 后，目录结构如下（以 Cursor 为例）：
 
 ```
 your-project/
-├── .claude/commands/          # Claude Code 命令
-│   ├── tml-doctor.md
-│   ├── tml-update.md
-│   └── tml-ai-spec.md
-├── .cursor/commands/          # Cursor 命令
-├── .trae/commands/            # Trae 命令
+├── .cursor/
+│   ├── commands/
+│   │   ├── tml-doctor.md
+│   │   ├── tml-update.md
+│   │   └── tml-ai-spec.md
+│   └── skills/
+│       └── tml-docs-spec-generate/
+│           └── SKILL.md
 ├── docs/                      # 文档根目录
 │   ├── api/                   # API 接口文档 (.yaml)
 │   ├── sql/                   # 数据库表结构 (.sql)
 │   ├── design/                # 架构设计文档
-│   │   └── domain/            # 领域设计文档
 │   └── spec/                  # 开发规范文档
 └── .openspec/                 # OpenSpec 配置（OpenSpec 模式）
 ```
@@ -55,7 +56,7 @@ npm install -g @tml/tmlspec-cli
 tml-spec --version
 ```
 
-**预期结果**：终端输出当前版本号（如 `0.5.1`）
+**预期结果**：终端输出当前版本号（如 `0.6.0`）
 
 ---
 
@@ -89,21 +90,39 @@ tml-spec init
 ### 步骤 4：选择 AI IDE
 
 ```
-? Select IDEs or tools to initialize (Press <space> to select)
-❯◯ Claude Code (.claude/commands/)
-  ◯ Cursor (.cursor/commands/)
-  ◯ GitHub Copilot (.github/prompts/)
-  ◯ Gemini CLI (.gemini/commands/)
-  ◯ OpenCode (.opencode/commands/)
-  ◯ Codex (~/.codex/prompts/)
-  ◯ Trae (.trae/commands/)
+? Select IDE (Use arrow keys)
+❯ Claude Code (.claude/commands/)
+  Cursor (.cursor/commands/)
+  GitHub Copilot (.github/prompts/)
+  Gemini CLI (.gemini/commands/)
+  OpenCode (.opencode/commands/)
+  Codex (.codex/prompts/)
+  Trae (.trae/commands/)
 ```
 
-**操作**：使用空格键选择你正在使用的 AI IDE（可多选）
+**操作**：使用方向键选择你正在使用的 AI IDE（单选）
 
 ---
 
-### 步骤 5：选择 AI Coding 模式
+### 步骤 5：安装 TML commands（自动）
+
+选择 IDE 后，CLI 会自动安装 TML 公共命令组件（`tml-doctor` / `tml-update` / `tml-ai-spec`）。
+
+如果目标文件已存在，会出现覆盖确认：
+
+```
+? Overwrite files if they already exist? (y/N)
+```
+
+---
+
+### 步骤 6：安装 TML skills（自动）
+
+CLI 会自动从 `https://github.com/Time-Machine-Lab/TML-Skills` 安装默认技能 `tml-docs-spec-generate` 到所选 IDE 对应目录下的 `skills/`。
+
+---
+
+### 步骤 7：选择 AI Coding 模式
 
 ```
 ? Select AI Coding Mode (Use arrow keys)
@@ -117,29 +136,24 @@ tml-spec init
 
 ---
 
-### 步骤 6：确认覆盖策略
-
-```
-? Overwrite files if they already exist? (y/N)
-```
-
-**操作**：
-- 输入 `y` 覆盖已存在的文件
-- 输入 `n` 或直接按 Enter 跳过已存在的文件
-
----
-
-### 步骤 7：等待初始化完成
+### 步骤 8：等待初始化完成
 
 **预期输出**：
 
 ```
 ✨ TML Workspace Setup Complete! 🎉
 
-Generated files:
-- .claude/commands/tml-doctor.md
-- .claude/commands/tml-update.md
-- .claude/commands/tml-ai-spec.md
+安装 TML commands...
+TML commands 安装完成 (created: 3, skipped: 0)
+安装 TML skills...
+安装 tml-docs-spec-generate (https://github.com/Time-Machine-Lab/TML-Skills)...
+TML skills 安装完成: tml-docs-spec-generate
+
+Generated files (示例):
+- .cursor/commands/tml-doctor.md
+- .cursor/commands/tml-update.md
+- .cursor/commands/tml-ai-spec.md
+- .cursor/skills/tml-docs-spec-generate/SKILL.md
 - docs/api/
 - docs/sql/
 - docs/design/
@@ -148,7 +162,7 @@ Generated files:
 
 ---
 
-### 步骤 8：（仅 OpenSpec 模式）同步 TML 规约
+### 步骤 9：（仅 OpenSpec 模式）同步 TML 规约
 
 OpenSpec 初始化完成后，在 AI 会话中执行：
 
@@ -200,8 +214,8 @@ OpenSpec 初始化完成后，在 AI 会话中执行：
 
 **典型输出**：
 ```
-当前版本: 0.4.0
-最新版本: 0.5.1
+当前版本: 0.6.0
+最新版本: 0.6.0
 [建议] 执行以下命令更新:
 npm install -g @tml/tmlspec-cli@latest
 ```
@@ -234,9 +248,7 @@ docs/                          # 文档根目录（Single Source of Truth）
 │   └── example: user.sql      # 用户表结构示例（含索引、初始数据）
 │
 ├── design/                    # 架构设计文档目录
-│   ├── *.md                   # 顶层架构设计文档
-│   └── domain/                # 领域设计文档子目录
-│       └── *.md               # 各模块领域设计文档
+│   └── *.md                   # 顶层架构设计文档
 │
 └── spec/                      # 开发规范文档目录
     ├── *.md                   # 技术栈规范、代码风格规范等
@@ -248,7 +260,7 @@ docs/                          # 文档根目录（Single Source of Truth）
 |:-----|:-----|:---------|
 | `docs/api/` | API 接口文档 | 必须使用 OpenAPI 3.0 格式（`.yaml`） |
 | `docs/sql/` | 数据库表结构 | 必须使用 PostgreSQL DDL 语法（`.sql`） |
-| `docs/design/` | 架构与领域设计 | 架构文档存放根目录，领域设计存放 `domain/` 子目录 |
+| `docs/design/` | 架构设计 | 架构文档统一存放在该目录下 |
 | `docs/spec/` | 开发规范 | Agent 开发前必须遵守的编码约束 |
 
 ### 4.2 docs/sql/ — 数据库表结构
@@ -275,17 +287,15 @@ docs/                          # 文档根目录（Single Source of Truth）
 
 > ⚠️ **红线**：严禁在 `docs/api/` 之外定义或修改 API 接口。
 
-### 4.4 docs/design/ — 架构与领域设计
+### 4.4 docs/design/ — 架构设计
 
 | 项目 | 说明 |
 |:-----|:-----|
 | **存放内容** | `.md` 文件（Markdown 文档） |
 | **核心定位** | 项目架构与模块划分的**顶层权威** |
 | **规范约束** | 所有需求开发不能偏离此目录下的架构设计 |
-| **目录结构** | `docs/design/` 存放顶层架构，`docs/design/domain/` 存放领域设计 |
-| **命名示例** | `系统架构设计.md`、`domain/用户领域设计.md` |
-
-> 💡 **提示**：领域设计文档应遵循 DDD（领域驱动设计）方法论，每个领域模块一个文档。
+| **目录结构** | 所有架构与模块设计文档统一存放在 `docs/design/` |
+| **命名示例** | `系统架构设计.md`、`用户模块设计.md` |
 
 ### 4.5 docs/spec/ — 开发规范
 

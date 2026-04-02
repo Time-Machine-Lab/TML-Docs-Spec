@@ -34,7 +34,7 @@ export const TOOL_OPTIONS: ToolOption[] = [
   {
     id: 'codex',
     label: 'Codex',
-    directory: `~/.codex/prompts/`,
+    directory: `.codex/prompts/`,
     fileType: 'Markdown'
   },
   {
@@ -44,4 +44,3 @@ export const TOOL_OPTIONS: ToolOption[] = [
     fileType: 'Markdown'
   }
 ];
-

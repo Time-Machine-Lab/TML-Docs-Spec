@@ -1,9 +1,7 @@
-import { homedir } from 'node:os';
-import path from 'node:path';
 import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
-const CODEX_PROMPTS_DIRECTORY = path.join(homedir(), '.codex', 'prompts');
+const CODEX_PROMPTS_DIRECTORY = '.codex/prompts/';
 
 export const codexAdapter: ToolAdapter = {
   tool: {

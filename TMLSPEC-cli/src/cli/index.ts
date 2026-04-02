@@ -22,7 +22,7 @@ program
   .option('--project-root <path>', 'Target directory for generated files')
   .option(
     '--tools <ids>',
-    `Comma-separated tools: ${TOOL_OPTIONS.map((tool) => tool.id).join(', ')}`
+    `Single tool id: ${TOOL_OPTIONS.map((tool) => tool.id).join(', ')}`
   )
   .option('--force', 'Allow overwriting existing files', false)
   .action(async (options) => {

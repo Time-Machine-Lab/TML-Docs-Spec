@@ -9,6 +9,34 @@ function readCommandMarkdown(fileName: string): string {
   return readFileSync(path.join(packageRoot, 'src', 'core', 'commands', fileName), 'utf8').trimEnd();
 }
 
+export interface TmlCommandDefinition {
+  id: string;
+  fileName: string;
+  description: string;
+}
+
+export const TML_COMMAND_DEFINITIONS: TmlCommandDefinition[] = [
+  {
+    id: 'doctor',
+    fileName: 'doctor.md',
+    description: 'Check environment health'
+  },
+  {
+    id: 'update',
+    fileName: 'update.md',
+    description: 'Check for updates'
+  },
+  {
+    id: 'ai-spec',
+    fileName: 'ai-spec.md',
+    description: 'Sync TML-Spec-Coding rules to AI Mode'
+  }
+];
+
+export function buildCommandMarkdownByFileName(fileName: string): string {
+  return readCommandMarkdown(fileName);
+}
+
 export function buildDoctorMarkdownCommand(): string {
   return readCommandMarkdown('doctor.md');
 }
