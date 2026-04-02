@@ -1,26 +1,29 @@
+import { homedir } from 'node:os';
+import path from 'node:path';
 import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
+const CODEX_PROMPTS_DIRECTORY = path.join(homedir(), '.codex', 'prompts');
 
 export const codexAdapter: ToolAdapter = {
   tool: {
     id: 'codex',
     label: 'Codex',
-    directory: `~/.codex/prompts/`,
+    directory: CODEX_PROMPTS_DIRECTORY,
     fileType: 'Markdown'
   },
   generateFiles() {
     return [
       {
-        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'doctor.md'),
+        relativePath: buildNamespacedCommandPath(CODEX_PROMPTS_DIRECTORY, 'doctor.md'),
         content: buildDoctorMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'update.md'),
+        relativePath: buildNamespacedCommandPath(CODEX_PROMPTS_DIRECTORY, 'update.md'),
         content: buildUpdateMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('~/.codex/prompts/', 'ai-spec.md'),
+        relativePath: buildNamespacedCommandPath(CODEX_PROMPTS_DIRECTORY, 'ai-spec.md'),
         content: buildAiSpecMarkdownCommand()
       }
     ];

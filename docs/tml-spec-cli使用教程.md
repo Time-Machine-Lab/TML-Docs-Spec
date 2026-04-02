@@ -55,7 +55,7 @@ npm install -g @tml/tmlspec-cli
 tml-spec --version
 ```
 
-**预期结果**：终端输出当前版本号（如 `0.5.0`）
+**预期结果**：终端输出当前版本号（如 `0.5.1`）
 
 ---
 
@@ -201,7 +201,7 @@ OpenSpec 初始化完成后，在 AI 会话中执行：
 **典型输出**：
 ```
 当前版本: 0.4.0
-最新版本: 0.5.0
+最新版本: 0.5.1
 [建议] 执行以下命令更新:
 npm install -g @tml/tmlspec-cli@latest
 ```
