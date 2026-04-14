@@ -23,3 +23,4 @@ maintainer_note: |
 | `OpenAPI_Generation_Spec` | `contract/OpenAPI规范指令.md` | 系统指令 | 约束 Agent 生成符合 OpenAPI 3.0.3 规范的接口描述，输出纯 `.yaml` 文件。 |
 | `Task_Assignment_Spec` | `contract/任务书文档模板.md` | 文档模板 | 旨在平滑移交任务，消除信息差，明确任务背景、资料库、执行细节及验收标准。 |
 | `Phase_Gate_Process_Spec` | `contract/流程规范文档模板.md` | 文档模板 | 运用阶段关卡模型定义团队业务流转的生命周期，明确各阶段的触发时机、关键动作与流转关卡，避免写成操作教程。 |
+| `Phase_Plan_Spec` | `contract/项目阶段性规划设计模板.md` | 文档模板 | 交代某一产品/项目在特定阶段内的功能规划、交付形态与成功标准，让团队所有角色（开发、设计、测试、AI Agent）对本期方向形成共识。遵循黄金圈理论，聚焦用户视角，不涉及任何技术实现细节。 |

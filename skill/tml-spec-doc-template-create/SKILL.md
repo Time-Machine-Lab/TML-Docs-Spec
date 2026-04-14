@@ -102,23 +102,7 @@ example: |
 
 ---
 
-### 步骤三：自检与交付
-
-输出完整模板后，**必须**在回复末尾执行并展示以下自检报告：
-
-```
-✅ 自检报告
-1. YAML 格式：全局 Frontmatter 和所有章节级 Frontmatter 均已用 `---` 正确包裹。
-2. 字段合规：未发现任何自创字段。全部字段均在授权列表内（name / description / methodology / out_of_scope / required / format_instruction / example）。
-3. 交付建议：请将此文件保存至项目的 `contract/` 目录下，命名建议为 `[模板名称]模板.md`。
-4. 待优化项：[列出哪些章节尚未提供 example，建议补充；或列出「无待优化项」]
-```
-
-自检结束后，询问用户：「是否需要为某个特定章节补充更详细的 `format_instruction` 或 `example`？」
-
----
-
-### 步骤四：更新契约索引
+### 步骤三：更新契约索引
 
 模板文件写入 `contract/` 目录后，**必须**同步更新索引文件 `CONTRACT_INDEX.md`。
 
@@ -136,6 +120,23 @@ example: |
 ```
 | `PRD_Spec` | `contract/需求文档模板.md` | 文档模板 | 描述产品功能需求，包含用户故事、验收标准和优先级，不涉及技术实现方案。 |
 ```
+
+---
+### 步骤四：自检与交付
+
+输出完整模板后，**必须**在回复末尾执行并展示以下自检报告：
+
+```
+✅ 自检报告
+1. YAML 格式：全局 Frontmatter 和所有章节级 Frontmatter 均已用 `---` 正确包裹。
+2. 字段合规：未发现任何自创字段。全部字段均在授权列表内（name / description / methodology / out_of_scope / required / format_instruction / example）。
+3. 交付建议：请将此文件保存至项目的 `contract/` 目录下，命名建议为 `[模板名称]模板.md`。
+4. 待优化项：[列出哪些章节尚未提供 example，建议补充；或列出「无待优化项」]
+5. 索引项更新：读取 CONTRACT_INDEX.md，检查新增模板的 name 字段是否已在索引表格中出现，若无则立即追加。
+```
+
+自检结束后，询问用户：「是否需要为某个特定章节补充更详细的 `format_instruction` 或 `example`？」
+
 
 ---
 
