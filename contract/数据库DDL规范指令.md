@@ -9,10 +9,15 @@ target_file_extension: ".sql"
 > **[Agent 极其重要的执行指令]**
 > 当你被要求基于某个模块设计生成数据库表结构时，你**必须**输出一个纯文本的 `.sql` 文件，而**不能**输出 Markdown 格式的文档。
 > 你的输出结果将直接被自动化工具读取并在数据库中执行。
+> **关键约束**：生成的 SQL 文件**只能包含 DDL 语句**（如 CREATE TABLE、CREATE INDEX、COMMENT ON 等），**禁止包含任何 DML 语句**（如 INSERT、UPDATE、DELETE）或任何数据操作语句。
 
 ## 1. 核心生成原则 (Core Principles)
 - **方言要求 (Dialect)**：必须使用标准的 PostgreSQL 语法（或根据用户在《开发规范模板》中指定的数据库方言）。
-- **文件命名**：文件必须以 `.sql` 结尾，例如 `init_user_module.sql`。
+- **文件命名**：文件名**必须**与目标表名完全一致，**禁止**使用业务模块前缀或后缀。例如：
+  - ✅ 正确：`user.sql`（表名为 `user`）
+  - ✅ 正确：`order_item.sql`（表名为 `order_item`）
+  - ❌ 错误：`init_user_module.sql`
+  - ❌ 错误：`user_table.sql`
 - **幂等性 (Idempotency)**：建表语句必须使用 `CREATE TABLE IF NOT EXISTS`。
 - **注释要求**：每个表和每个核心字段，必须使用 `COMMENT ON` 语句添加中文业务注释。这对于后续的 AI 识别极其重要。
 
