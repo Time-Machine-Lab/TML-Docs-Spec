@@ -14,7 +14,7 @@ maintainer_note: |
 | `GitHub_README_Spec` | `contract/Github项目README模板.md` | 文档模板 | 为 GitHub 开源仓库生成结构清晰、吸引人的 README，覆盖项目简介、快速启动、功能说明、贡献指南等章节。 |
 | `Architecture_Design_Spec` | `contract/架构设计模板.md` | 文档模板 | 系统顶层架构设计，聚焦权衡、边界和数据流，采用裁剪版 4+1 视图，不涉及具体 API 参数或代码规范。 |
 | `Domain_Module_Design_Spec` | `contract/领域模块设计模板.md` | 文档模板 | 基于 DDD 的单个业务模块详细设计，含限界上下文、聚合根和业务约束，使用 Mermaid 图表，不含全局架构或 API 细节。 |
-| `Dev_Guidelines_Spec` | `contract/开发规范模板.md` | 文档模板 | 团队/项目级开发规范，说明「如何写代码」和「遵循什么流程」，不包含具体业务需求。 |
+| `Dev_Guidelines_Spec` | `contract/开发规范模板.md` | 文档模板 | 团队/项目级开发规范，包含项目目录结构、代码风格、Git 流程、测试与 CI/CD 策略，不包含具体业务需求或技术架构图。 |
 | `Meeting_Minutes_Spec` | `contract/会议记录模板.md` | 文档模板 | 将无序会议对话整合为结构化记录，提取结论、共识和待办事项，不逐字记录发言。 |
 | `Team_Resources_Spec` | `contract/团队资源模板.md` | 文档模板 | 动态管理团队资源（账号、服务器、中间件等）的元模板，大纲由数据类型驱动生成，使用表格化管理。 |
 | `Tutorial_Spec` | `contract/使用教程模板.md` | 文档模板 | 实操教程，遵循「概览层→执行层→容错层」三阶架构，强调最小可行路径，不讲底层原理。 |
