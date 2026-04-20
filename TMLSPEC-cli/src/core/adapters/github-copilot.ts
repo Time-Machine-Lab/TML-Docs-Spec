@@ -1,4 +1,4 @@
-import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildCovenantSyncMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
@@ -20,8 +20,8 @@ export const githubCopilotAdapter: ToolAdapter = {
         content: buildUpdateMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.github/prompts/', 'ai-spec.prompt.md'),
-        content: buildAiSpecMarkdownCommand()
+        relativePath: buildNamespacedCommandPath('.github/prompts/', 'covenant-sync.prompt.md'),
+        content: buildCovenantSyncMarkdownCommand()
       }
     ];
   }

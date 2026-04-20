@@ -27,9 +27,9 @@ export const TML_COMMAND_DEFINITIONS: TmlCommandDefinition[] = [
     description: 'Check for updates'
   },
   {
-    id: 'ai-spec',
-    fileName: 'ai-spec.md',
-    description: 'Sync TML-Spec-Coding rules to AI Mode'
+    id: 'covenant-sync',
+    fileName: 'covenant-sync.md',
+    description: 'Sync TML Public Knowledge to AI Coding Mode'
   }
 ];
 
@@ -45,8 +45,8 @@ export function buildUpdateMarkdownCommand(): string {
   return readCommandMarkdown('update.md');
 }
 
-export function buildAiSpecMarkdownCommand(): string {
-  return readCommandMarkdown('ai-spec.md');
+export function buildCovenantSyncMarkdownCommand(): string {
+  return readCommandMarkdown('covenant-sync.md');
 }
 
 export function buildGeminiTomlCommand(name: string, description: string, prompt: string): string {

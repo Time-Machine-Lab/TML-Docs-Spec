@@ -1,4 +1,4 @@
-import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildCovenantSyncMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
@@ -20,8 +20,8 @@ export const opencodeAdapter: ToolAdapter = {
         content: buildUpdateMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.opencode/commands/', 'ai-spec.md'),
-        content: buildAiSpecMarkdownCommand()
+        relativePath: buildNamespacedCommandPath('.opencode/commands/', 'covenant-sync.md'),
+        content: buildCovenantSyncMarkdownCommand()
       }
     ];
   }

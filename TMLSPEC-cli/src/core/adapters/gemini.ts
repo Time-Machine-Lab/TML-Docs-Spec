@@ -1,4 +1,4 @@
-import { buildGeminiTomlCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
+import { buildGeminiTomlCommand, buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildCovenantSyncMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
@@ -20,8 +20,8 @@ export const geminiAdapter: ToolAdapter = {
         content: buildGeminiTomlCommand('update', 'Check for updates', buildUpdateMarkdownCommand())
       },
       {
-        relativePath: buildNamespacedCommandPath('.gemini/commands/', 'ai-spec.toml'),
-        content: buildGeminiTomlCommand('ai-spec', 'Sync TML-Spec-Coding rules to AI Mode', buildAiSpecMarkdownCommand())
+        relativePath: buildNamespacedCommandPath('.gemini/commands/', 'covenant-sync.toml'),
+        content: buildGeminiTomlCommand('covenant-sync', 'Sync TML Public Knowledge to AI Coding Mode', buildCovenantSyncMarkdownCommand())
       }
     ];
   }

@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildCovenantSyncMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 import { downloadSkill } from '../../utils/fs.js';
@@ -22,8 +22,8 @@ export const traeAdapter: ToolAdapter = {
         content: buildUpdateMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.trae/commands/', 'ai-spec.md'),
-        content: buildAiSpecMarkdownCommand()
+        relativePath: buildNamespacedCommandPath('.trae/commands/', 'covenant-sync.md'),
+        content: buildCovenantSyncMarkdownCommand()
       }
     ];
   },

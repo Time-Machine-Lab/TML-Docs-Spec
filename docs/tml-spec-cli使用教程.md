@@ -19,7 +19,7 @@ your-project/
 │   ├── commands/
 │   │   ├── tml-doctor.md
 │   │   ├── tml-update.md
-│   │   └── tml-ai-spec.md
+│   │   └── tml-covenant-sync.md
 │   └── skills/
 │       └── tml-docs-spec-generate/
 │           └── SKILL.md
@@ -106,7 +106,7 @@ tml-spec init
 
 ### 步骤 5：安装 TML commands（自动）
 
-选择 IDE 后，CLI 会自动安装 TML 公共命令组件（`tml-doctor` / `tml-update` / `tml-ai-spec`）。
+选择 IDE 后，CLI 会自动安装 TML 公共命令组件（`tml-doctor` / `tml-update` / `tml-covenant-sync`）。
 
 如果目标文件已存在，会出现覆盖确认：
 
@@ -152,7 +152,7 @@ TML skills 安装完成: tml-docs-spec-generate
 Generated files (示例):
 - .cursor/commands/tml-doctor.md
 - .cursor/commands/tml-update.md
-- .cursor/commands/tml-ai-spec.md
+- .cursor/commands/tml-covenant-sync.md
 - .cursor/skills/tml-docs-spec-generate/SKILL.md
 - docs/api/
 - docs/sql/
@@ -167,7 +167,7 @@ Generated files (示例):
 OpenSpec 初始化完成后，在 AI 会话中执行：
 
 ```
-/tml-ai-spec
+/tml-covenant-sync
 ```
 
 **预期结果**：AI 自动将 TML-Spec-Coding 规约注入到 `.openspec.yaml` 配置文件中
@@ -182,7 +182,7 @@ OpenSpec 初始化完成后，在 AI 会话中执行：
 |:------|:-------|:-------|:-------|
 | `tml-doctor` | `/tml-doctor` | 环境诊断 | 检测 tml-spec 配置和依赖状态，提供修复建议 |
 | `tml-update` | `/tml-update` | 版本检查 | 检查 CLI 及配置是否为最新版本，协助更新 |
-| `tml-ai-spec` | `/tml-ai-spec` | 规约同步 | 将 TML 规约注入到 第三方规约 配置中 |
+| `tml-covenant-sync` | `/tml-covenant-sync` | 契约同步 | 将 TML 公共知识同步至第三方 AI Coding 模式的配置中 |
 
 ### 3.2 tml-doctor 命令详解
 
@@ -199,7 +199,7 @@ OpenSpec 初始化完成后，在 AI 会话中执行：
 [检查中] TML Spec 配置...
 ✓ .claude/commands/ 目录存在
 ✓ docs/ 目录结构完整
-✓ tml-ai-spec.md 命令已加载
+✓ tml-covenant-sync.md 命令已加载
 [建议] 建议定期执行 /tml-update 检查更新
 ```
 
@@ -220,18 +220,22 @@ OpenSpec 初始化完成后，在 AI 会话中执行：
 npm install -g @tml/tmlspec-cli@latest
 ```
 
-### 3.4 tml-ai-spec 命令详解
+### 3.4 tml-covenant-sync 命令详解
 
-**调用方式**：在 AI 会话输入框中输入 `/tml-ai-spec`
+**调用方式**：在 AI 会话输入框中输入 `/tml-covenant-sync`
 
 **前置条件**：项目已选择 OpenSpec 模式初始化
 
 **功能**：
 - 自动识别当前使用的 AI Coding 模式
-- 将 TML-Spec-Coding 规约注入到 OpenSpec 配置中
+- 将 TML 公共知识（Public Knowledge）同步到目标框架的配置中
 - 配置内容包括：
   - `project_context`：docs/design、docs/spec 路径映射
   - `rules`：Explore/Propose/Apply 阶段约束
+
+**支持的 AI Coding 模式**：
+- OpenSpec（`.openspec.yaml` / `config.yaml`）
+- 其他框架可扩展
 
 ---
 

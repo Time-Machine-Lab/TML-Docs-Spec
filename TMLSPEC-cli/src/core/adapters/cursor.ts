@@ -1,4 +1,4 @@
-import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildAiSpecMarkdownCommand } from '../command-files.js';
+import { buildDoctorMarkdownCommand, buildUpdateMarkdownCommand, buildCovenantSyncMarkdownCommand } from '../command-files.js';
 import { buildNamespacedCommandPath } from '../command-paths.js';
 import type { ToolAdapter } from '../types.js';
 
@@ -20,8 +20,8 @@ export const cursorAdapter: ToolAdapter = {
         content: buildUpdateMarkdownCommand()
       },
       {
-        relativePath: buildNamespacedCommandPath('.cursor/commands/', 'ai-spec.md'),
-        content: buildAiSpecMarkdownCommand()
+        relativePath: buildNamespacedCommandPath('.cursor/commands/', 'covenant-sync.md'),
+        content: buildCovenantSyncMarkdownCommand()
       }
     ];
   }
