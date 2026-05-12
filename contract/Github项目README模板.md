@@ -1,13 +1,20 @@
 ---
 name: GitHub_README_Spec
-description: 帮助开源项目作者为 GitHub 仓库生成结构清晰、吸引人、对 Agent 和开发者双友好的 README 文档，覆盖项目简介、快速启动、功能说明、贡献指南等核心章节。
+description: 帮助开源项目作者为 GitHub 仓库生成结构清晰、风格大胆、组件丰富、对 Agent 和开发者双友好的 README 文档，覆盖项目简介、快速启动、功能说明、贡献指南等核心章节。
 methodology:
   - "金字塔原理：结论先行——第一屏必须让访客在 10 秒内判断'这个项目是否值得我继续读'"
   - "渐进式披露：从 What → Why → How → Join，信息密度由浅入深"
   - "Show, Don't Tell：用徽章、截图、代码示例代替纯文字描述"
+  - "风格简报 (Style Brief)：生成前必须先识别用户指定的审美关键词、目标受众和项目人格，再统一标题、配色、组件、章节命名和文案语气"
+  - "组件化视觉叙事：优先参考外部优秀 README 的组件组合方式，如 capsule-render、shields.io、readme-typing-svg、GitHub Readme Stats、Mermaid、details 折叠块；组件必须服务信息表达，不能只做装饰"
+  - "主动组件探索：当用户要求大胆、风格化或参考流行 README 时，Agent 可以主动搜索并挑选合适有趣的外部 README 组件；优先选择仍在维护、加载稳定、能表达项目信息的组件，并说明其用途"
+  - "奇观与可用性平衡：允许天马行空的叙事和章节命名，但安装、运行、配置、贡献等行动路径必须保持可复制、可验证、可维护"
 out_of_scope:
   - 详细的内部实现原理、算法推导或源码级解析（这些属于 Wiki 或 ARCHITECTURE.md 等独立文档）
   - 项目的商业计划、融资情况、团队组织架构等非技术信息
+  - 不得逐段照搬外部仓库 README 的文案或结构；只能提取视觉方法、组件组合和信息架构模式
+  - 不得为了炫技堆砌过多远程图片、徽章或动态组件，导致 README 加载慢、信息噪声过高或超过 GitHub 渲染限制
+  - 不得引用来历不明、明显失效、需要泄露密钥或与项目主题无关的第三方组件
 ---
 
 # GitHub 项目 README 文档模板
@@ -16,43 +23,65 @@ out_of_scope:
 ---
 required: true
 description: |
-  这是 README 的「门面」，决定访客是否继续阅读。目标是在第一屏内完成三件事：
-  1. 用项目 Logo 或标题建立视觉识别；
-  2. 用一句话 Slogan 说清楚「这是什么 / 解决什么问题」；
-  3. 用徽章（Badges）快速传递项目健康度信号（构建状态、版本、许可证、Stars 数等）。
-  Agent 生成徽章时，优先使用 shields.io，顺序建议：CI 状态 → 最新版本 → License → Stars。
-format_instruction: 徽章使用 Markdown 行内图片语法渲染在同一行；Logo 和标题使用 HTML div align="center" 居中包裹。
+  这是 README 的「门面」和视觉钩子，决定访客是否继续阅读。生成前先根据用户输入提取 3-5 个风格关键词（如二次元、赛博、复古终端、魔法学院、太空歌剧），并把它们落实到标题、配色、徽章、动态组件和一句话 Slogan 中。
+  第一屏必须完成五件事：
+  1. 用项目 Logo、capsule-render 横幅或风格化标题建立强视觉识别；
+  2. 用一句话 Slogan 说清楚「这是什么 / 为谁解决什么问题」；
+  3. 用 3-6 个徽章传递项目健康度和身份标签，优先使用 shields.io；
+  4. 如果用户要求风格化，加入 readme-typing-svg、动态横幅、主题色徽章或轻量动图，但必须保持可读；
+  5. 使用 1-2 句具有项目人格的短文案，让 README 不像模板生成物。
+  Agent 可参考 G-Ark 示例的方法：动态横幅 + for-the-badge 徽章 + typing SVG + 一段隐喻式定位文案。除模板列出的组件外，Agent 可以自行搜索适合当前项目气质的有趣组件，例如贡献蛇形图、Star History、GitHub Profile Trophy、WakaTime/开发时长卡片、访问计数、终端风格统计卡、赞助/社区入口卡片等；只有当组件能表达项目状态、社区活跃度、技术栈或主题氛围时才使用。
+format_instruction: 使用 HTML div align="center" 居中包裹；可使用 capsule-render 横幅作为首屏背景；徽章使用 Markdown 行内图片或 HTML img；动态组件不超过 3 类，徽章不超过 8 个；远程图片必须提供 alt 文本。若引入模板未列出的外部组件，必须在注释中写明组件用途和替换参数。
 example: |
   <div align="center">
-    <img src="assets/logo.png" alt="ProjectName Logo" width="120" />
-    <h1>ProjectName</h1>
-    <p>一句话说清楚这个项目是什么，解决什么核心痛点。</p>
-    <a href="https://github.com/owner/repo/actions"><img src="https://img.shields.io/github/actions/workflow/status/owner/repo/ci.yml?label=CI&style=flat-square" /></a>
-    <a href="https://github.com/owner/repo/releases"><img src="https://img.shields.io/github/v/release/owner/repo?style=flat-square" /></a>
-    <a href="LICENSE"><img src="https://img.shields.io/github/license/owner/repo?style=flat-square" /></a>
-    <a href="https://github.com/owner/repo/stargazers"><img src="https://img.shields.io/github/stars/owner/repo?style=flat-square" /></a>
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0:7C3AED,45:06B6D4,100:F97316&text=ProjectName&fontColor=ffffff&fontSize=64&fontAlignY=36&desc=Build%20Something%20Wild&descAlignY=58&animation=fadeIn" alt="ProjectName banner" width="100%" />
+
+    <a href="https://github.com/owner/repo/actions"><img src="https://img.shields.io/github/actions/workflow/status/owner/repo/ci.yml?label=CI&style=for-the-badge&color=06B6D4" alt="CI Status" /></a>
+    <a href="https://github.com/owner/repo/releases"><img src="https://img.shields.io/github/v/release/owner/repo?style=for-the-badge&color=7C3AED" alt="Latest Release" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/owner/repo?style=for-the-badge&color=F97316" alt="License" /></a>
+    <a href="https://github.com/owner/repo/stargazers"><img src="https://img.shields.io/github/stars/owner/repo?style=for-the-badge&color=FACC15" alt="Stars" /></a>
+
+    <br />
+
+    <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=24&pause=1100&color=06B6D4&center=true&vCenter=true&width=760&lines=One%20line%20value%20prop;Second%20line%20with%20personality;Third%20line%20that%20invites%20action" alt="Typing SVG" />
+
+    <p>一句话说清楚项目定位，再用一句风格化隐喻给访客留下记忆点。</p>
   </div>
 ---
 
-<!-- 将下方 [owner] 和 [repo] 替换为实际的 GitHub 用户名和仓库名 -->
+<!--
+生成前请先确定 README 风格简报：
+- 风格关键词：[例如：二次元 / 赛博 / 复古终端 / 太空歌剧 / 魔法学院]
+- 项目人格：[例如：冷静工程师 / 热血冒险者 / 未来控制台 / 可爱助手]
+- 主色方案：[例如：#7C3AED + #06B6D4 + #F97316]
+- 参考组件：[capsule-render / shields.io / readme-typing-svg / github-readme-stats / Mermaid / details]
+- 可自行探索组件：[根据项目主题搜索合适的 README widget，例如 Star History、贡献蛇形图、Profile Trophy、WakaTime、Visitor Badge、终端风格统计卡；只保留与项目表达有关的 1-3 个]
+将下方 [owner] 和 [repo] 替换为实际的 GitHub 用户名和仓库名。
+-->
 
 <div align="center">
 
-  <!-- 如有项目 Logo，取消注释并替换路径 -->
-  <!-- <img src="assets/logo.png" alt="[项目名称] Logo" width="120" /> -->
+  <!-- 推荐：使用 capsule-render 或本地 banner 建立第一眼记忆点 -->
+  <!-- <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0:[主色1],50:[主色2],100:[主色3]&text=[项目名称]&fontColor=ffffff&fontSize=64&fontAlignY=36&desc=[英文短副标题]&descAlignY=58&animation=fadeIn" alt="[项目名称] banner" width="100%" /> -->
 
   # [项目名称]
 
-  > [一句话 Slogan：说清楚这个项目是什么，为谁解决什么问题]
+  > [一句话 Slogan：说清楚这个项目是什么，为谁解决什么问题。语气要匹配风格关键词，不要写成通用产品介绍。]
 
-  [![CI Status](https://img.shields.io/github/actions/workflow/status/[owner]/[repo]/ci.yml?label=CI&style=flat-square)](https://github.com/[owner]/[repo]/actions)
-  [![Latest Release](https://img.shields.io/github/v/release/[owner]/[repo]?style=flat-square)](https://github.com/[owner]/[repo]/releases)
-  [![License](https://img.shields.io/github/license/[owner]/[repo]?style=flat-square)](LICENSE)
-  [![Stars](https://img.shields.io/github/stars/[owner]/[repo]?style=flat-square)](https://github.com/[owner]/[repo]/stargazers)
+  [![CI Status](https://img.shields.io/github/actions/workflow/status/[owner]/[repo]/ci.yml?label=CI&style=for-the-badge)](https://github.com/[owner]/[repo]/actions)
+  [![Latest Release](https://img.shields.io/github/v/release/[owner]/[repo]?style=for-the-badge)](https://github.com/[owner]/[repo]/releases)
+  [![License](https://img.shields.io/github/license/[owner]/[repo]?style=for-the-badge)](LICENSE)
+  [![Stars](https://img.shields.io/github/stars/[owner]/[repo]?style=for-the-badge)](https://github.com/[owner]/[repo]/stargazers)
   <!-- 可选徽章示例（按需取消注释）：-->
-  <!-- [![npm](https://img.shields.io/npm/v/[package-name]?style=flat-square)](https://www.npmjs.com/package/[package-name]) -->
-  <!-- [![Docker Pulls](https://img.shields.io/docker/pulls/[owner]/[image]?style=flat-square)](https://hub.docker.com/r/[owner]/[image]) -->
-  <!-- [![Coverage](https://img.shields.io/codecov/c/github/[owner]/[repo]?style=flat-square)](https://codecov.io/gh/[owner]/[repo]) -->
+  <!-- [![npm](https://img.shields.io/npm/v/[package-name]?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/[package-name]) -->
+  <!-- [![Docker Pulls](https://img.shields.io/docker/pulls/[owner]/[image]?style=for-the-badge&logo=docker)](https://hub.docker.com/r/[owner]/[image]) -->
+  <!-- [![Coverage](https://img.shields.io/codecov/c/github/[owner]/[repo]?style=for-the-badge&logo=codecov)](https://codecov.io/gh/[owner]/[repo]) -->
+
+  <!-- 推荐：风格化项目可添加 typing SVG，但 lines 必须传递项目价值，不要只写口号 -->
+  <!-- <img src="https://readme-typing-svg.demolab.com?font=[字体]&weight=700&size=24&pause=1100&color=[主色HEX]&center=true&vCenter=true&width=760&lines=[价值主张1];[价值主张2];[行动邀请]" alt="Typing SVG" /> -->
+
+  <!-- 可选：如果项目适合展示增长、社区或开发节奏，可自行选择一个有信息价值的外部组件 -->
+  <!-- 例：Star History 用于展示项目增长趋势；贡献蛇形图更适合个人/社区型项目；WakaTime 更适合开发者工具或个人项目。 -->
 
 </div>
 
@@ -66,17 +95,18 @@ description: |
   - What（它是什么）：项目类型、定位、核心能力
   - Why（为什么存在）：解决了哪个现实痛点，对比现有方案的优势
   - For whom（给谁用）：目标用户画像
-  如果项目有线上 Demo 或截图，必须在本节末尾插入，优先使用 GIF 动图展示核心交互流程。
-format_instruction: 核心特性使用无序列表（带 emoji 前缀如 ✅ 或 ⚡）呈现；Demo 截图/GIF 使用 HTML div 居中包裹。
+  同时必须把项目人格延续下来：普通项目可以专业清晰，用户要求风格化时要把章节标题、隐喻、短句和视觉组件统一成一个“世界观”，例如把知识库称为“星图控制台”，把首次使用称为“第一条咒语”。
+  如果项目有线上 Demo、截图、GIF、终端录屏或架构图，必须在本节末尾插入，优先使用能展示核心体验的视觉资产。
+format_instruction: 核心特性使用带风格的无序列表或 Markdown 表格；Demo 截图/GIF 使用 HTML div 居中包裹；允许用 Mermaid、terminal GIF、GitHub Readme Stats 卡片补充视觉表达，但每个组件必须有信息价值。
 example: |
-  **ProjectName** 是一个轻量级 TypeScript 库，专为需要处理大规模异步任务的后端开发者设计，
-  解决了原生 Promise.all 在高并发场景下缺乏流控能力的问题。
+  **ProjectName** 是一座给后端任务流准备的「并发控制塔」：它把失控的 Promise 风暴压缩成可观测、可重试、可限速的任务航线。
 
-  **核心特性：**
-  - ✅ 并发限流：精确控制同时运行的任务数量，防止资源耗尽
-  - ✅ 自动重试：内置指数退避策略，失败任务自动重试最多 N 次
-  - ⚡ 零依赖：仅 2KB（gzipped），无任何第三方依赖
-  - 🔒 类型安全：完整的 TypeScript 类型定义，无需额外安装 @types
+  | 能力 | 它帮你挡住什么混乱 |
+  |------|----------------------|
+  | ✅ 并发限流 | 防止上游接口被瞬间打穿 |
+  | 🔁 自动重试 | 让临时失败有秩序地重新起飞 |
+  | ⚡ 零依赖 | 保持包体轻巧，不把工具箱变成仓库 |
+  | 🔒 类型安全 | 在编译期拦住错误调用 |
 
   <div align="center">
     <img src="assets/demo.gif" alt="Demo" width="700" />
@@ -84,14 +114,14 @@ example: |
   </div>
 ---
 
-[用 2-3 句话描述项目定位、核心价值主张，以及与同类方案的关键差异点]
+[用 2-3 句话描述项目定位、核心价值主张，以及与同类方案的关键差异点。若用户提供风格要求，请把项目写成一个有鲜明人格的存在，而不是普通工具介绍。]
 
 **核心特性：**
 
 - ✅ [特性一：用动词开头，说明带来什么具体价值]
-- ✅ [特性二：量化优势，如「比 XX 方案快 3x，内存占用降低 60%」]
-- ⚡ [特性三：突出技术亮点]
-- 🔒 [特性四：可选，如安全性、兼容性特性]
+- 🔁 [特性二：可使用符合风格的符号，但不能牺牲可读性]
+- ⚡ [特性三：突出技术亮点或量化优势，如「比 XX 方案快 3x」]
+- 🔒 [特性四：可选，如安全性、兼容性、可追溯性]
 
 <!-- 如有截图或演示 GIF，取消注释并替换路径 -->
 <!--
@@ -111,6 +141,7 @@ description: |
   必须包含三个子节：环境要求 → 安装 → 第一个可运行示例。
   核心要求：所有命令必须可以直接复制粘贴执行，不允许有歧义的省略号代替真实命令。
   如果支持多种安装方式（npm/pip/Docker/源码编译），按推荐程度从高到低排列。
+  如果用户要求风格化，可以把章节标题改成更有主题感的名称（如「打开方式」「第一条咒语」「启动控制台」），但标题后必须保留英文或语义明确的说明，且步骤本身必须朴素、准确、可执行。
 methodology: "5分钟原则：一个有经验的开发者应该能在 5 分钟内跑通第一个示例"
 ---
 
@@ -203,25 +234,40 @@ description: |
   在快速开始之后，面向想深入了解的访客，提供更完整的功能介绍和使用指南。
   如果文档较长，优先链接到外部文档站（如 docs.example.com 或 Wiki），而不是在 README 中堆砌大量文字。
   本章节为选填，小型项目可省略，直接在「快速开始」中涵盖常用用法。
-format_instruction: 功能列表使用 Markdown 表格展示（功能名 | 说明 | 文档链接），配置项使用代码块。
+  风格化 README 应优先把功能组织成“地图”而不是清单：可按入口、场景、角色、阶段、工作流、能力域分组，像 G-Ark 示例中的「星图入口」「运转方式」一样，让读者一眼知道从哪里进入。
+  Agent 可以在本节自行寻找更贴合项目的展示组件：技术栈项目可用 skill icons 或依赖徽章；成长型开源项目可用 Star History；数据/CLI/监控项目可用终端风格 SVG 或实时统计卡；社区型项目可用贡献者墙、Discord/交流群徽章或贡献活动图。选择组件时先判断“它能让读者更快理解什么”，不能只因为有趣就加入。
+format_instruction: 功能列表优先使用 Markdown 表格展示（功能名/入口/阶段 | 作用 | 文档链接）；复杂流程可补 Mermaid 图；高级说明可放入 details 折叠块，避免首屏之后信息过载。外部组件最多补充 1-3 个，且每个组件附近必须有一句说明其信息价值。
 example: |
-  | 功能 | 说明 | 文档 |
+  | 入口 | 作用 | 文档 |
   |------|------|------|
-  | 并发限流 | 控制同时运行的最大任务数 | [文档](docs/concurrency.md) |
-  | 自动重试 | 失败任务按指数退避策略重试 | [文档](docs/retry.md) |
-  | 进度回调 | 实时获取任务完成进度 | [文档](docs/progress.md) |
+  | `queue.limit()` | 打开并发控制阀门 | [文档](docs/concurrency.md) |
+  | `queue.retry()` | 给失败任务一条返航路线 | [文档](docs/retry.md) |
+  | `queue.onProgress()` | 观察任务星图的实时进度 | [文档](docs/progress.md) |
+
+  <details>
+  <summary><strong>展开完整能力地图</strong></summary>
+
+  ```mermaid
+  flowchart LR
+      Input[任务输入] --> Limit[并发限流]
+      Limit --> Retry[失败重试]
+      Retry --> Progress[进度回调]
+      Progress --> Output[结果输出]
+  ```
+
+  </details>
 ---
 
 ### 4.1 功能列表（Feature Matrix）
 ---
 required: false
-description: 用表格或分组列表，系统化展示所有功能模块及其简要说明，每项功能附上跳转链接（文档页或代码示例）。
-format_instruction: 必须使用 Markdown 表格，列为「功能 | 说明 | 文档/示例链接」。
+description: 用表格、分组列表或能力地图系统化展示所有功能模块及其简要说明。风格化项目可以把「功能」命名为「入口」「装备」「技能树」「星图节点」等，但每一项仍必须说明真实用途，并附上跳转链接（文档页或代码示例）。
+format_instruction: 必须使用 Markdown 表格，列名可按风格调整，但语义必须覆盖「功能/入口 | 说明/作用 | 文档/示例链接」。
 ---
 
-| 功能 | 说明 | 文档链接 |
-|------|------|----------|
-| [功能模块一] | [一句话说明该功能的作用] | [文档](docs/[feature-1].md) |
+| 入口/功能 | 作用 | 文档链接 |
+|-----------|------|----------|
+| [功能模块一，可使用风格化命名] | [一句话说明该功能的真实作用] | [文档](docs/[feature-1].md) |
 | [功能模块二] | [一句话说明] | [示例](#[anchor]) |
 | [功能模块三] | [一句话说明] | [文档](docs/[feature-3].md) |
 
@@ -268,7 +314,7 @@ description: |
   面向潜在贡献者，说明如何参与项目贡献。目标是降低「第一次贡献」的心理门槛。
   必须包含：如何提 Issue（问题模板说明）+ 如何提交 PR（分支规范、提交信息格式）。
   可选包含：本地开发环境搭建步骤、代码规范、测试要求。
-  语气应友善且具体，避免写成「欢迎 PR」这种空话。
+  语气应友善且具体，避免写成「欢迎 PR」这种空话。风格化 README 可以延续世界观，比如把贡献称为「提交一张新星图」「投递一个补丁法术」，但必须同时给出标准 Issue/PR 流程。
 format_instruction: 开发流程使用有序列表（步骤化），提交规范使用代码块展示示例。
 example: |
   欢迎任何形式的贡献！无论是 Bug 报告、功能建议，还是代码提交。
