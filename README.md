@@ -1,55 +1,62 @@
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=190&color=0:0EA5E9,45:7C3AED,100:F97316&text=TML-Docs-Spec&fontColor=ffffff&fontSize=58&fontAlignY=35&desc=Contracts%20for%20Human%20x%20Agent%20Collaboration&descAlignY=58&animation=fadeIn" alt="TML-Docs-Spec banner" width="100%" />
+  <!-- 首屏策略：采用“时间机器研究所 + 文档契约星图”的轻二次元设定。外部灵感只转译方法：Moeru AI 的研究所感、DeepGHS 的 anime-tech 直球定位、AnimeThemes 的实用克制、LobeHub 的项目矩阵。 -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:FF8AB3,42:7C3AED,100:00B8D9&text=TML-Docs-Spec&fontColor=ffffff&fontSize=58&fontAlignY=34&desc=Human%20x%20Agent%20Documentation%20Constellation&descAlignY=58&animation=fadeIn" alt="TML-Docs-Spec banner" width="100%" />
 
-  [![Publish CLI](https://img.shields.io/github/actions/workflow/status/Time-Machine-Lab/TML-Docs-Spec/publish.yml?label=Publish%20CLI&style=for-the-badge&color=0EA5E9)](https://github.com/Time-Machine-Lab/TML-Docs-Spec/actions/workflows/publish.yml)
-  [![Stars](https://img.shields.io/github/stars/Time-Machine-Lab/TML-Docs-Spec?style=for-the-badge&color=F97316)](https://github.com/Time-Machine-Lab/TML-Docs-Spec/stargazers)
+  [![Publish CLI](https://img.shields.io/github/actions/workflow/status/Time-Machine-Lab/TML-Docs-Spec/publish.yml?label=Publish%20CLI&style=for-the-badge&color=00B8D9)](https://github.com/Time-Machine-Lab/TML-Docs-Spec/actions/workflows/publish.yml)
+  [![Stars](https://img.shields.io/github/stars/Time-Machine-Lab/TML-Docs-Spec?style=for-the-badge&color=FF8AB3)](https://github.com/Time-Machine-Lab/TML-Docs-Spec/stargazers)
   [![Node](https://img.shields.io/badge/Node.js-%3E%3D18.18-22C55E?style=for-the-badge&logo=node.js&logoColor=white)](TMLSPEC-cli/package.json)
   [![Contracts](https://img.shields.io/badge/Contracts-15-7C3AED?style=for-the-badge)](CONTRACT_INDEX.md)
   [![Agent Ready](https://img.shields.io/badge/Agent-Ready-06B6D4?style=for-the-badge)](skill/tml-spec-doc-template-create/SKILL.md)
 
   <br />
 
-  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=24&pause=1200&color=0EA5E9&center=true&vCenter=true&width=840&lines=One%20contract%20library%20for%20every%20team%20document;Make%20AI%20agents%20read%20the%20same%20map%20as%20humans;Turn%20scattered%20knowledge%20into%20executable%20specs" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Zen+Maru+Gothic&weight=700&size=24&pause=1200&color=FF8AB3&center=true&vCenter=true&width=900&lines=Open+the+contract+gate+for+your+AI+agents;Make+humans+and+agents+read+the+same+star+map;Turn+scattered+knowledge+into+executable+specs" alt="Typing SVG" />
 
   <p>
-    一座给团队和 AI Agent 共用的文档契约星图：把模板、方法论、目录规范和生成技能收束成可执行的协作协议。
+    一座给团队与 AI Agent 共用的文档契约星图。<br />
+    把模板、方法论、目录规范和生成技能，封装成可执行的协作协议。
+  </p>
+
+  <p>
+    <a href="#星图总览overview"><strong>星图总览</strong></a> ·
+    <a href="#第一次启动first-run"><strong>第一次启动</strong></a> ·
+    <a href="#契约控制台features--documentation"><strong>契约控制台</strong></a> ·
+    <a href="#提交新的星图contributing"><strong>贡献</strong></a>
   </p>
 
 </div>
 
 ---
 
-## 2. 项目概览（Overview）
+## 🌌 星图总览（Overview）
 
 **TML-Docs-Spec** 不是一堆静态 Markdown 模板，而是一套面向 Multi-Agent 协作的“文档契约库”。它把项目概念、架构设计、领域模块、API、DDL、会议记录、任务书等高频文档沉淀为标准模板，让人类团队和 AI Agent 在同一套结构、边界和方法论里协作。
 
-如果普通 README 是说明书，TML-Docs-Spec 更像一座“上下文控制台”：先用 `contract/` 定义文档应该长什么样，再用 Skill 或 CLI 把这些契约注入到具体项目中，让 Agent 生成内容时有地图、有护栏、有入口。
+如果普通 README 是说明书，TML-Docs-Spec 更像 Time Machine Lab 的“上下文控制台”：先用 `contract/` 定义文档应该长什么样，再用 Skill 或 CLI 把这些契约注入到具体项目中，让 Agent 生成内容时有地图、有护栏、有入口。
 
-**核心能力：**
-
-| 能力 | 它解决什么混乱 |
-|------|----------------|
-| 原子化文档契约 | 每个模板只负责一种文档类型，明确该写什么、不该写什么 |
+| 研究所装置 | 它解决什么混乱 |
+|------------|----------------|
+| `contract/` 契约档案库 | 每个模板只负责一种文档类型，明确该写什么、不该写什么 |
 | Agent 可执行指令 | 模板内置 YAML Frontmatter、description、example，让 Agent 知道如何生成 |
-| 方法论驱动 | 将黄金圈、DDD、4+1、SCQA、阶段关卡等方法论转成写作约束 |
-| CLI 初始化器 | `tml-spec init` 可为项目注入 docs 目录、AI commands、skills 和 OpenSpec 集成 |
-| 多 IDE 适配 | 支持 Claude Code、Cursor、GitHub Copilot、Gemini CLI、OpenCode、Codex、Trae |
+| 方法论晶核 | 将黄金圈、DDD、4+1、SCQA、阶段关卡等方法论转成写作约束 |
+| `tml-spec init` 启动器 | 为项目注入 docs 目录、AI commands、skills 和 OpenSpec 集成 |
+| 多 IDE 适配舱 | 支持 Claude Code、Cursor、GitHub Copilot、Gemini CLI、OpenCode、Codex、Trae |
 
-![TML Docs Spec Flow](https://quickchart.io/graphviz?graph=digraph%20G%20%7Brankdir%3DLR%3Bnode%20%5Bshape%3Dbox%2Cstyle%3D%22rounded%2Cfilled%22%2Ccolor%3D%22%237C3AED%22%2Cfillcolor%3D%22%23F5F3FF%22%2Cfontname%3D%22Microsoft%20YaHei%22%5D%3BIdea%20%5Blabel%3D%22Idea%20%2F%20Need%22%5D%3BContract%20%5Blabel%3D%22contract%2F%20Templates%22%5D%3BSkill%20%5Blabel%3D%22tml-docs-spec-generate%22%5D%3BDoc%20%5Blabel%3D%22Structured%20Docs%22%5D%3BAgent%20%5Blabel%3D%22Agent-readable%20Context%22%5D%3BIdea-%3EContract-%3ESkill-%3EDoc-%3EAgent%3B%7D)
+![TML Docs Spec Flow](https://quickchart.io/graphviz?graph=digraph%20G%20%7Brankdir%3DLR%3Bbgcolor%3D%22transparent%22%3Bnode%20%5Bshape%3Dbox%2Cstyle%3D%22rounded%2Cfilled%22%2Ccolor%3D%22%237C3AED%22%2Cfillcolor%3D%22%23FDF2F8%22%2Cfontname%3D%22Microsoft%20YaHei%22%5D%3BIdea%20%5Blabel%3D%22Idea%20%2F%20Need%22%5D%3BContract%20%5Blabel%3D%22contract%2F%20Templates%22%5D%3BSkill%20%5Blabel%3D%22tml-docs-spec-generate%22%5D%3BDoc%20%5Blabel%3D%22Structured%20Docs%22%5D%3BAgent%20%5Blabel%3D%22Agent-readable%20Context%22%5D%3BIdea-%3EContract-%3ESkill-%3EDoc-%3EAgent%3B%7D)
 
 ---
 
-## 3. 快速开始（Quick Start）
+## 🪄 第一次启动（First Run）
 
-### 3.1 环境要求（Prerequisites）
+### 环境要求（Prerequisites）
 
 - [Node.js](https://nodejs.org/) >= 18.18（使用 `TMLSPEC-cli` 时需要）
 - npm >= 9.0（安装 CLI 时需要）
 - 任意支持 AI commands / skills / prompts 的 AI IDE：Claude Code、Cursor、Trae、GitHub Copilot、Gemini CLI、OpenCode、Codex
 - 可访问 GitHub 与团队配置的 npm registry
 
-### 3.2 安装（Installation）
+### 取得契约档案（Installation）
 
 如果你只是想查看或复用模板，可以直接克隆本仓库：
 
@@ -71,7 +78,7 @@ npm install -g @tml/tmlspec-cli
 tml-spec --version
 ```
 
-### 3.3 第一个示例（Hello World）
+### 召唤第一份文档（Hello World）
 
 在任意 AI IDE 中，直接让 Agent 使用模板生成文档：
 
@@ -94,12 +101,12 @@ tml-spec init
 
 ---
 
-## 4. 功能详情（Features & Documentation）
+## 🛰️ 契约控制台（Features & Documentation）
 
 TML-Docs-Spec 的入口不是单点，而是一组可组合的控制台。新人从 `CONTRACT_INDEX.md` 找模板，维护者在 `contract/` 扩展契约，项目团队用 `TMLSPEC-cli` 把规范注入到自己的工程。
 
-| 入口 | 作用 | 文档/位置 |
-|------|------|-----------|
+| 控制台入口 | 作用 | 跳转 |
+|------------|------|------|
 | `CONTRACT_INDEX.md` | 全部模板的权威索引，记录 name、路径、类型和适用场景 | [查看索引](CONTRACT_INDEX.md) |
 | `contract/` | 文档模板与系统指令仓库，包含 README、架构、DDD、DDL、OpenAPI 等契约 | [进入契约库](contract/) |
 | `YAML_FRONTMATTER_SPEC.md` | 模板元数据规范，定义模板创建和文档生成时如何处理 Frontmatter | [查看规范](YAML_FRONTMATTER_SPEC.md) |
@@ -108,7 +115,7 @@ TML-Docs-Spec 的入口不是单点，而是一组可组合的控制台。新人
 | `docs/tml-spec-cli使用教程.md` | CLI 从安装到初始化的完整教程 | [查看教程](docs/tml-spec-cli使用教程.md) |
 | `docs/tml-openspec-coding开发流程规范.md` | TML + OpenSpec 的 AI 编码流程约束 | [查看流程](docs/tml-openspec-coding开发流程规范.md) |
 
-### 4.1 契约矩阵（Contract Matrix）
+### 契约矩阵（Contract Matrix）
 
 | 契约名称 | 类型 | 适用场景 |
 |----------|------|----------|
@@ -158,7 +165,7 @@ your-project/
 
 ---
 
-## 5. 贡献指南（Contributing）
+## 🧭 提交新的星图（Contributing）
 
 欢迎为 TML-Docs-Spec 提交新的文档契约、修正已有模板，或改进 CLI/工作流。这里的每一次贡献，最好都能回答一个问题：它是否让人类和 Agent 更容易共享上下文？
 
@@ -200,7 +207,7 @@ npm run dev -- init
 
 ---
 
-## 6. 路线图（Roadmap）
+## 🗺️ 星图航线（Roadmap）
 
 - [x] 建立核心文档契约：项目概念、架构设计、领域模块、开发规范
 - [x] 增加系统指令型契约：SQL DDL、OpenAPI
@@ -212,7 +219,7 @@ npm run dev -- init
 
 ---
 
-## 7. 许可证与致谢（License & Acknowledgements）
+## 📜 许可证与致谢（License & Acknowledgements）
 
 当前仓库根目录尚未提供独立 `LICENSE` 文件；`TMLSPEC-cli/package.json` 中声明 CLI 包使用 MIT License。使用、转载或二次分发本仓库内容前，请以维护者后续补充的根许可证为准。
 
